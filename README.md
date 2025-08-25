@@ -11,461 +11,461 @@
 &nbsp;
 [![Star this repo](https://img.shields.io/badge/★-Star%20this%20repo-e7b10b)](https://github.com/automazeio/ccpm)
 
-### Claude Code workflow to ship ~~faster~~ _better_ using spec-driven development, GitHub issues, Git worktrees, and mutiple AI agents running in parallel.
+### 使用规范驱动开发、GitHub Issues、Git worktrees 和并行运行的多个 AI agents 的 Claude Code 工作流，不是更快交付，而是_更好地_交付。
 
-Stop losing context. Stop blocking on tasks. Stop shipping bugs. This battle-tested system turns PRDs into epics, epics into GitHub issues, and issues into production code – with full traceability at every step.
+停止丢失上下文。停止在任务上阻塞。停止交付 bugs。这个经过实战验证的系统将 PRD 转化为 epics，将 epics 转化为 GitHub issues，将 issues 转化为生产代码——每一步都有完整的可追溯性。
 
 ![Claude Code PM](screenshot.webp)
 
-## Table of Contents
+## 目录
 
-- [Background](#background)
-- [The Workflow](#the-workflow)
-- [What Makes This Different?](#what-makes-this-different)
-- [Why GitHub Issues?](#why-github-issues)
-- [Core Principle: No Vibe Coding](#core-principle-no-vibe-coding)
-- [System Architecture](#system-architecture)
-- [Workflow Phases](#workflow-phases)
-- [Command Reference](#command-reference)
-- [The Parallel Execution System](#the-parallel-execution-system)
-- [Key Features & Benefits](#key-features--benefits)
-- [Proven Results](#proven-results)
-- [Example Flow](#example-flow)
-- [Get Started Now](#get-started-now)
-- [Local vs Remote](#local-vs-remote)
-- [Technical Notes](#technical-notes)
-- [Support This Project](#support-this-project)
+- [背景](#background)
+- [工作流](#the-workflow)
+- [差异点](#what-makes-this-different)
+- [为什么使用 GitHub Issues？](#why-github-issues)
+- [核心原则：杜绝即兴编程](#core-principle-no-vibe-coding)
+- [系统架构](#system-architecture)
+- [工作流阶段](#workflow-phases)
+- [命令参考](#command-reference)
+- [并行执行系统](#the-parallel-execution-system)
+- [关键特性与优势](#key-features--benefits)
+- [经过验证的效果](#proven-results)
+- [示例流程](#example-flow)
+- [立即开始](#get-started-now)
+- [本地 vs 远程](#local-vs-remote)
+- [技术说明](#technical-notes)
+- [支持这个项目](#support-this-project)
 
-## Background
+## 背景
 
-Every team struggles with the same problems:
-- **Context evaporates** between sessions, forcing constant re-discovery
-- **Parallel work creates conflicts** when multiple developers touch the same code
-- **Requirements drift** as verbal decisions override written specs
-- **Progress becomes invisible** until the very end
+每个团队都面临着同样的问题：
+- **上下文在会话间消失**，迫使不断重新发现
+- **并行工作产生冲突**，当多个开发者接触同一代码时
+- **需求漂移**，口头决策覆盖书面规范
+- **进度不可见**，直到最后才能看到
 
-This system solves all of that.
+这个系统解决了所有这些问题。
 
-## The Workflow
+## 工作流
 
 ```mermaid
 graph LR
-    A[PRD Creation] --> B[Epic Planning]
-    B --> C[Task Decomposition]
-    C --> D[GitHub Sync]
-    D --> E[Parallel Execution]
+    A[PRD 创建] --> B[Epic 规划]
+    B --> C[任务分解]
+    C --> D[GitHub 同步]
+    D --> E[并行执行]
 ```
 
-### See It In Action (60 seconds)
+### 实际演示（60 秒）
 
 ```bash
-# Create a comprehensive PRD through guided brainstorming
+# 通过引导式头脑风暴创建全面的 PRD
 /pm:prd-new memory-system
 
-# Transform PRD into a technical epic with task breakdown
+# 将 PRD 转换为带有任务分解的技术 epic
 /pm:prd-parse memory-system
 
-# Push to GitHub and start parallel execution
+# 推送到 GitHub 并开始并行执行
 /pm:epic-oneshot memory-system
 /pm:issue-start 1235
 ```
 
-## What Makes This Different?
+## 差异点
 
-| Traditional Development | Claude Code PM System |
+| 传统开发方式 | Claude Code PM 系统 |
 |------------------------|----------------------|
-| Context lost between sessions | **Persistent context** across all work |
-| Serial task execution | **Parallel agents** on independent tasks |
-| "Vibe coding" from memory | **Spec-driven** with full traceability |
-| Progress hidden in branches | **Transparent audit trail** in GitHub |
-| Manual task coordination | **Intelligent prioritization** with `/pm:next` |
+| 会话间上下文丢失 | **持久化上下文** 贯穿所有工作 |
+| 串行任务执行 | **并行 agents** 处理独立任务 |
+| 基于感觉的"即兴编程" | **规范驱动** 具备完整可追溯性 |
+| 分支中隐藏进度 | GitHub 中的 **透明审计轨迹** |
+| 手动任务协调 | 使用 `/pm:next` 的**智能优先级排序** |
 
-## Why GitHub Issues?
+## 为什么使用 GitHub Issues？
 
-Most Claude Code workflows operate in isolation – a single developer working with AI in their local environment. This creates a fundamental problem: **AI-assisted development becomes a silo**.
+大多数 Claude Code 工作流都是孤立运行的——单个开发者在本地环境中与 AI 协作。这产生了一个根本性问题：**AI 辅助开发成为了孤岛**。
 
-By using GitHub Issues as our database, we unlock something powerful:
+通过使用 GitHub Issues 作为我们的数据库，我们释放了强大的功能：
 
-### 🤝 **True Team Collaboration**
-- Multiple Claude instances can work on the same project simultaneously
-- Human developers see AI progress in real-time through issue comments
-- Team members can jump in anywhere – the context is always visible
-- Managers get transparency without interrupting flow
+### 🤝 **真正的团队协作**
+- 多个 Claude 实例可以同时在同一项目上工作
+- 人类开发者通过 issue 评论实时看到 AI 进度
+- 团队成员可以随时加入——上下文始终可见
+- 管理者无需打断工作流程就能获得透明度
 
-### 🔄 **Seamless Human-AI Handoffs**
-- AI can start a task, human can finish it (or vice versa)
-- Progress updates are visible to everyone, not trapped in chat logs
-- Code reviews happen naturally through PR comments
-- No "what did the AI do?" meetings
+### 🔄 **无缝的人机交接**
+- AI 可以开始任务，人类可以完成（或反之）
+- 进度更新对所有人可见，而不被困在聊天记录中
+- 代码审查通过 PR 评论自然发生
+- 没有"AI 做了什么？"的会议
 
-### 📈 **Scalable Beyond Solo Work**
-- Add team members without onboarding friction
-- Multiple AI agents working in parallel on different issues
-- Distributed teams stay synchronized automatically
-- Works with existing GitHub workflows and tools
+### 📈 **可扩展到单独工作之外**
+- 添加团队成员无摩擦入职
+- 多个 AI agents 在不同 issues 上并行工作
+- 分布式团队自动保持同步
+- 与现有 GitHub 工作流和工具配合
 
-### 🎯 **Single Source of Truth**
-- No separate databases or project management tools
-- Issue state is the project state
-- Comments are the audit trail
-- Labels provide organization
+### 🎯 **单一真相来源**
+- 无需单独的数据库或项目管理工具
+- Issue 状态就是项目状态
+- 评论是审计轨迹
+- Labels 提供组织结构
 
-This isn't just a project management system – it's a **collaboration protocol** that lets humans and AI agents work together at scale, using infrastructure your team already trusts.
+这不仅仅是一个项目管理系统——它是一个**协作协议**，让人类和 AI agents 能够大规模协作，使用您的团队已经信任的基础设施。
 
-## Core Principle: No Vibe Coding
+## 核心原则：杜绝即兴编程
 
-> **Every line of code must trace back to a specification.**
+> **每一行代码都必须能够追溯到规范。**
 
-We follow a strict 5-phase discipline:
+我们遵循严格的5阶段纪律：
 
-1. **🧠 Brainstorm** - Think deeper than comfortable
-2. **📝 Document** - Write specs that leave nothing to interpretation
-3. **📐 Plan** - Architect with explicit technical decisions
-4. **⚡ Execute** - Build exactly what was specified
-5. **📊 Track** - Maintain transparent progress at every step
+1. **🧠 头脑风暴** - 思考得比舒适范围更深入
+2. **📝 文档记录** - 编写不容误解的规范
+3. **📐 规划** - 用明确的技术决策进行架构设计
+4. **⚡ 执行** - 完全按照规范构建
+5. **📊 跟踪** - 在每个步骤保持透明的进度
 
-No shortcuts. No assumptions. No regrets.
+没有捷径。没有假设。没有遗憾。
 
-## System Architecture
+## 系统架构
 
 ```
 .claude/
-├── CLAUDE.md          # Always-on instructions (copy content to your project's CLAUDE.md file)
-├── agents/            # Task-oriented agents (for context preservation)
-├── commands/          # Command definitions
-│   ├── context/       # Create, update, and prime context
-│   ├── pm/            # ← Project management commands (this system)
-│   └── testing/       # Prime and execute tests (edit this)
-├── context/           # Project-wide context files
-├── epics/             # ← PM's local workspace (place in .gitignore)
-│   └── [epic-name]/   # Epic and related tasks
-│       ├── epic.md    # Implementation plan
-│       ├── [#].md     # Individual task files
-│       └── updates/   # Work-in-progress updates
-├── prds/              # ← PM's PRD files
-├── rules/             # Place any rule files you'd like to reference here
-└── scripts/           # Place any script files you'd like to use here
+├── CLAUDE.md          # 始终激活的指令（复制内容到你项目的 CLAUDE.md 文件中）
+├── agents/            # 面向任务的 agents（用于上下文保持）
+├── commands/          # 命令定义
+│   ├── context/       # 创建、更新和预备上下文
+│   ├── pm/            # ← 项目管理命令（本系统）
+│   └── testing/       # 预备和执行测试（编辑这个）
+├── context/           # 项目级别的上下文文件
+├── epics/             # ← PM的本地工作区（放在 .gitignore 中）
+│   └── [epic-name]/   # Epic 和相关任务
+│       ├── epic.md    # 实现计划
+│       ├── [#].md     # 单个任务文件
+│       └── updates/   # 进行中的更新
+├── prds/              # ← PM的 PRD 文件
+├── rules/             # 放置你想引用的任何规则文件
+└── scripts/           # 放置你想使用的任何脚本文件
 ```
 
-## Workflow Phases
+## 工作流阶段
 
-### 1. Product Planning Phase
+### 1. 产品规划阶段
 
 ```bash
 /pm:prd-new feature-name
 ```
-Launches comprehensive brainstorming to create a Product Requirements Document capturing vision, user stories, success criteria, and constraints.
+启动全面的头脑风暴，创建一个捕获愿景、用户故事、成功标准和约束条件的产品需求文档。
 
-**Output:** `.claude/prds/feature-name.md`
+**输出：** `.claude/prds/feature-name.md`
 
-### 2. Implementation Planning Phase
+### 2. 实现规划阶段
 
 ```bash
 /pm:prd-parse feature-name
 ```
-Transforms PRD into a technical implementation plan with architectural decisions, technical approach, and dependency mapping.
+将 PRD 转换为带有架构决策、技术方法和依赖映射的技术实现计划。
 
-**Output:** `.claude/epics/feature-name/epic.md`
+**输出：** `.claude/epics/feature-name/epic.md`
 
-### 3. Task Decomposition Phase
+### 3. 任务分解阶段
 
 ```bash
 /pm:epic-decompose feature-name
 ```
-Breaks epic into concrete, actionable tasks with acceptance criteria, effort estimates, and parallelization flags.
+将 epic 分解为具体的、可操作的任务，包含验收标准、工作量估算和并行化标记。
 
-**Output:** `.claude/epics/feature-name/[task].md`
+**输出：** `.claude/epics/feature-name/[task].md`
 
-### 4. GitHub Synchronization
+### 4. GitHub 同步
 
 ```bash
 /pm:epic-sync feature-name
-# Or for confident workflows:
+# 或者对于有把握的工作流：
 /pm:epic-oneshot feature-name
 ```
-Pushes epic and tasks to GitHub as issues with appropriate labels and relationships.
+将 epic 和任务推送到 GitHub，作为带有适当标签和关系的 issues。
 
-### 5. Execution Phase
+### 5. 执行阶段
 
 ```bash
-/pm:issue-start 1234  # Launch specialized agent
-/pm:issue-sync 1234   # Push progress updates
-/pm:next             # Get next priority task
+/pm:issue-start 1234  # 启动专门的 agent
+/pm:issue-sync 1234   # 推送进度更新
+/pm:next             # 获取下一个优先任务
 ```
-Specialized agents implement tasks while maintaining progress updates and an audit trail.
+专门的 agents 实现任务，同时保持进度更新和审计轨迹。
 
-## Command Reference
+## 命令参考
 
 > [!TIP]
-> Type `/pm:help` for a concise command summary
+> 输入 `/pm:help` 获取简洁的命令摘要
 
-### Initial Setup
-- `/pm:init` - Install dependencies and configure GitHub
+### 初始设置
+- `/pm:init` - 安装依赖并配置 GitHub
 
-### PRD Commands
-- `/pm:prd-new` - Launch brainstorming for new product requirement
-- `/pm:prd-parse` - Convert PRD to implementation epic
-- `/pm:prd-list` - List all PRDs
-- `/pm:prd-edit` - Edit existing PRD
-- `/pm:prd-status` - Show PRD implementation status
+### PRD 命令
+- `/pm:prd-new` - 为新产品需求启动头脑风暴
+- `/pm:prd-parse` - 将 PRD 转换为实现 epic
+- `/pm:prd-list` - 列出所有 PRD
+- `/pm:prd-edit` - 编辑现有 PRD
+- `/pm:prd-status` - 显示 PRD 实现状态
 
-### Epic Commands
-- `/pm:epic-decompose` - Break epic into task files
-- `/pm:epic-sync` - Push epic and tasks to GitHub
-- `/pm:epic-oneshot` - Decompose and sync in one command
-- `/pm:epic-list` - List all epics
-- `/pm:epic-show` - Display epic and its tasks
-- `/pm:epic-close` - Mark epic as complete
-- `/pm:epic-edit` - Edit epic details
-- `/pm:epic-refresh` - Update epic progress from tasks
+### Epic 命令
+- `/pm:epic-decompose` - 将 epic 分解为任务文件
+- `/pm:epic-sync` - 将 epic 和任务推送到 GitHub
+- `/pm:epic-oneshot` - 在一个命令中分解并同步
+- `/pm:epic-list` - 列出所有 epics
+- `/pm:epic-show` - 显示 epic 及其任务
+- `/pm:epic-close` - 标记 epic 为完成
+- `/pm:epic-edit` - 编辑 epic 详情
+- `/pm:epic-refresh` - 从任务更新 epic 进度
 
-### Issue Commands
-- `/pm:issue-show` - Display issue and sub-issues
-- `/pm:issue-status` - Check issue status
-- `/pm:issue-start` - Begin work with specialized agent
-- `/pm:issue-sync` - Push updates to GitHub
-- `/pm:issue-close` - Mark issue as complete
-- `/pm:issue-reopen` - Reopen closed issue
-- `/pm:issue-edit` - Edit issue details
+### Issue 命令
+- `/pm:issue-show` - 显示 issue 和子 issues
+- `/pm:issue-status` - 检查 issue 状态
+- `/pm:issue-start` - 用专门的 agent 开始工作
+- `/pm:issue-sync` - 推送更新到 GitHub
+- `/pm:issue-close` - 标记 issue 为完成
+- `/pm:issue-reopen` - 重新打开已关闭的 issue
+- `/pm:issue-edit` - 编辑 issue 详情
 
-### Workflow Commands
-- `/pm:next` - Show next priority issue with epic context
-- `/pm:status` - Overall project dashboard
-- `/pm:standup` - Daily standup report
-- `/pm:blocked` - Show blocked tasks
-- `/pm:in-progress` - List work in progress
+### 工作流命令
+- `/pm:next` - 显示带有 epic 上下文的下一个优先 issue
+- `/pm:status` - 整体项目仪表板
+- `/pm:standup` - 每日站会报告
+- `/pm:blocked` - 显示被阻塞的任务
+- `/pm:in-progress` - 列出进行中的工作
 
-### Sync Commands
-- `/pm:sync` - Full bidirectional sync with GitHub
-- `/pm:import` - Import existing GitHub issues
+### 同步命令
+- `/pm:sync` - 与 GitHub 的完整双向同步
+- `/pm:import` - 导入现有的 GitHub issues
 
-### Maintenance Commands
-- `/pm:validate` - Check system integrity
-- `/pm:clean` - Archive completed work
-- `/pm:search` - Search across all content
+### 维护命令
+- `/pm:validate` - 检查系统完整性
+- `/pm:clean` - 归档已完成的工作
+- `/pm:search` - 跨所有内容搜索
 
-## The Parallel Execution System
+## 并行执行系统
 
-### Issues Aren't Atomic
+### Issues 不是原子的
 
-Traditional thinking: One issue = One developer = One task
+传统思维：一个 issue = 一个开发者 = 一个任务
 
-**Reality: One issue = Multiple parallel work streams**
+**现实：一个 issue = 多个并行工作流**
 
-A single "Implement user authentication" issue isn't one task. It's...
+单个"实现用户认证"的 issue 不是一个任务。它是...
 
-- **Agent 1**: Database tables and migrations
-- **Agent 2**: Service layer and business logic
-- **Agent 3**: API endpoints and middleware
-- **Agent 4**: UI components and forms
-- **Agent 5**: Test suites and documentation
+- **Agent 1**：数据库表和迁移
+- **Agent 2**：服务层和业务逻辑
+- **Agent 3**：API 端点和中间件
+- **Agent 4**：UI 组件和表单
+- **Agent 5**：测试套件和文档
 
-All running **simultaneously** in the same worktree.
+所有这些都在同一个工作树中**同时**运行。
 
-### The Math of Velocity
+### 速度的数学
 
-**Traditional Approach:**
-- Epic with 3 issues
-- Sequential execution
+**传统方法：**
+- 包含 3 个 issues 的 Epic
+- 顺序执行
 
-**This System:**
-- Same epic with 3 issues
-- Each issue splits into ~4 parallel streams
-- **12 agents working simultaneously**
+**本系统：**
+- 同样包含 3 个 issues 的 Epic
+- 每个 issue 分解为约4个并行流
+- **12个 agents 同时工作**
 
-We're not assigning agents to issues. We're **leveraging multiple agents** to ship faster.
+我们不是将 agents 分配给 issues。我们是**利用多个 agents** 来更快交付。
 
-### Context Optimization
+### 上下文优化
 
-**Traditional single-thread approach:**
-- Main conversation carries ALL the implementation details
-- Context window fills with database schemas, API code, UI components
-- Eventually hits context limits and loses coherence
+**传统单线程方法：**
+- 主对话承载所有实现细节
+- 上下文窗口被数据库模式、API 代码、UI 组件填满
+- 最终触及上下文限制并失去连贯性
 
-**Parallel agent approach:**
-- Main thread stays clean and strategic
-- Each agent handles its own context in isolation
-- Implementation details never pollute the main conversation
-- Main thread maintains oversight without drowning in code
+**并行 agent 方法：**
+- 主线程保持清洁和战略性
+- 每个 agent 在隔离中处理自己的上下文
+- 实现细节从不污染主对话
+- 主线程保持监督而不淹没在代码中
 
-Your main conversation becomes the conductor, not the orchestra.
+你的主对话成为指挥家，而不是乐团。
 
-### GitHub vs Local: Perfect Separation
+### GitHub vs 本地：完美分离
 
-**What GitHub Sees:**
-- Clean, simple issues
-- Progress updates
-- Completion status
+**GitHub 看到的：**
+- 清洁、简单的 issues
+- 进度更新
+- 完成状态
 
-**What Actually Happens Locally:**
-- Issue #1234 explodes into 5 parallel agents
-- Agents coordinate through Git commits
-- Complex orchestration hidden from view
+**本地实际发生的：**
+- Issue #1234 爆发为5个并行 agents
+- Agents 通过 Git 提交协调
+- 复杂的协调过程隐藏在视野之外
 
-GitHub doesn't need to know HOW the work got done – just that it IS done.
+GitHub 不需要知道工作是如何完成的——只需要知道它已经完成。
 
-### The Command Flow
+### 命令流
 
 ```bash
-# Analyze what can be parallelized
+# 分析什么可以并行化
 /pm:issue-analyze 1234
 
-# Launch the swarm
+# 启动集群
 /pm:epic-start memory-system
 
-# Watch the magic
-# 12 agents working across 3 issues
-# All in: ../epic-memory-system/
+# 观看魔法
+# 12个 agents 跨3个 issues 工作
+# 全部在：../epic-memory-system/
 
-# One clean merge when done
+# 完成时一次干净的合并
 /pm:epic-merge memory-system
 ```
 
-## Key Features & Benefits
+## 关键特性与优势
 
-### 🧠 **Context Preservation**
-Never lose project state again. Each epic maintains its own context, agents read from `.claude/context/`, and updates locally before syncing.
+### 🧠 **上下文保持**
+再也不会丢失项目状态。每个 epic 维护自己的上下文，agents 从 `.claude/context/` 读取，并在同步前本地更新。
 
-### ⚡ **Parallel Execution**
-Ship faster with multiple agents working simultaneously. Tasks marked `parallel: true` enable conflict-free concurrent development.
+### ⚡ **并行执行**
+通过多个 agents 同时工作更快交付。标记为 `parallel: true` 的任务启用无冲突的并发开发。
 
-### 🔗 **GitHub Native**
-Works with tools your team already uses. Issues are the source of truth, comments provide history, and there is no dependency on the Projects API.
+### 🔗 **GitHub 原生**
+与你的团队已经使用的工具配合工作。Issues 是真相的来源，评论提供历史，不依赖于 Projects API。
 
-### 🤖 **Agent Specialization**
-Right tool for every job. Different agents for UI, API, and database work. Each reads requirements and posts updates automatically.
+### 🤖 **Agent 专业化**
+每个工作都有合适的工具。UI、API 和数据库工作使用不同的 agents。每个都自动读取需求并发布更新。
 
-### 📊 **Full Traceability**
-Every decision is documented. PRD → Epic → Task → Issue → Code → Commit. Complete audit trail from idea to production.
+### 📊 **完全可追溯性**
+每个决策都被记录。PRD → Epic → Task → Issue → Code → Commit。从想法到生产的完整审计轨迹。
 
-### 🚀 **Developer Productivity**
-Focus on building, not managing. Intelligent prioritization, automatic context loading, and incremental sync when ready.
+### 🚀 **开发者生产力**
+专注于构建，而不是管理。智能优先级排序、自动上下文加载，以及准备好时的增量同步。
 
-## Proven Results
+## 经过验证的效果
 
-Teams using this system report:
-- **89% less time** lost to context switching – you'll use `/compact` and `/clear` a LOT less
-- **5-8 parallel tasks** vs 1 previously – editing/testing multiple files at the same time
-- **75% reduction** in bug rates – due to the breaking down features into detailed tasks 
-- **Up to 3x faster** feature delivery – based on feature size and complexity
+使用这个系统的团队报告：
+- **89% 更少时间** 在上下文切换上的损失——你会少使用很多 `/compact` 和 `/clear` 
+- **5-8个并行任务** vs 之前的1个——同时编辑/测试多个文件
+- **75% 减少** bug 率——由于将功能分解为详细任务
+- **高达3倍更快** 功能交付——基于功能大小和复杂性
 
-## Example Flow
+## 示例流程
 
 ```bash
-# Start a new feature
+# 开始新功能
 /pm:prd-new memory-system
 
-# Review and refine the PRD...
+# 审查和完善 PRD...
 
-# Create implementation plan
+# 创建实现计划
 /pm:prd-parse memory-system
 
-# Review the epic...
+# 审查 epic...
 
-# Break into tasks and push to GitHub
+# 分解为任务并推送到 GitHub
 /pm:epic-oneshot memory-system
-# Creates issues: #1234 (epic), #1235, #1236 (tasks)
+# 创建 issues：#1234（epic），#1235，#1236（任务）
 
-# Start development on a task
+# 开始在任务上开发
 /pm:issue-start 1235
-# Agent begins work, maintains local progress
+# Agent 开始工作，维护本地进度
 
-# Sync progress to GitHub
+# 同步进度到 GitHub
 /pm:issue-sync 1235
-# Updates posted as issue comments
+# 更新作为 issue 评论发布
 
-# Check overall status
+# 检查整体状态
 /pm:epic-show memory-system
 ```
 
-## Get Started Now
+## 立即开始
 
-### Quick Setup (2 minutes)
+### 快速设置（2分钟）
 
-1. **Clone this repository into your project**:
+1. **将此仓库克隆到你的项目中**：
    ```bash
    cd path/to/your/project/
    git clone https://github.com/automazeio/ccpm.git .
    ```
-   > ⚠️ **IMPORTANT**: If you already have a `.claude` directory, clone this repository to a different directory and copy the contents of the cloned `.claude` directory to your project's `.claude` directory.
+   > ⚠️ **重要**：如果你已经有 `.claude` 目录，将此仓库克隆到不同目录，然后将克隆的 `.claude` 目录内容复制到你项目的 `.claude` 目录。
 
-2. **Initialize the PM system**:
+2. **初始化 PM 系统**：
    ```bash
    /pm:init
    ```
-   This command will:
-   - Install GitHub CLI (if needed)
-   - Authenticate with GitHub
-   - Install [gh-sub-issue extension](https://github.com/yahsan2/gh-sub-issue) for proper parent-child relationships
-   - Create required directories
-   - Update .gitignore
+   此命令将：
+   - 安装 GitHub CLI（如果需要）
+   - 使用 GitHub 进行身份验证
+   - 安装 [gh-sub-issue extension](https://github.com/yahsan2/gh-sub-issue) 以实现正确的父子关系
+   - 创建必需的目录
+   - 更新 .gitignore
 
-3. **Create `CLAUDE.md`** with your repository information
+3. **创建包含你仓库信息的 `CLAUDE.md`**：
    ```bash
    /init include rules from .claude/CLAUDE.md
    ```
-   > If you already have a `CLAUDE.md` file, run: `/re-init` to update it with important rules from `.claude/CLAUDE.md`.
+   > 如果你已经有 `CLAUDE.md` 文件，运行：`/re-init` 来用 `.claude/CLAUDE.md` 中的重要规则更新它。
 
-4. **Prime the system**:
+4. **预备系统**：
    ```bash
    /context:create
    ```
 
 
 
-### Start Your First Feature
+### 开始你的第一个功能
 
 ```bash
 /pm:prd-new your-feature-name
 ```
 
-Watch as structured planning transforms into shipped code.
+观看结构化规划如何转变为已交付的代码。
 
-## Local vs Remote
+## 本地 vs 远程
 
-| Operation | Local | GitHub |
+| 操作 | 本地 | GitHub |
 |-----------|-------|--------|
-| PRD Creation | ✅ | — |
-| Implementation Planning | ✅ | — |
-| Task Breakdown | ✅ | ✅ (sync) |
-| Execution | ✅ | — |
-| Status Updates | ✅ | ✅ (sync) |
-| Final Deliverables | — | ✅ |
+| PRD 创建 | ✅ | — |
+| 实现规划 | ✅ | — |
+| 任务分解 | ✅ | ✅ (同步) |
+| 执行 | ✅ | — |
+| 状态更新 | ✅ | ✅ (同步) |
+| 最终交付物 | — | ✅ |
 
-## Technical Notes
+## 技术说明
 
-### GitHub Integration
-- Uses **gh-sub-issue extension** for proper parent-child relationships
-- Falls back to task lists if extension not installed
-- Epic issues track sub-task completion automatically
-- Labels provide additional organization (`epic:feature`, `task:feature`)
+### GitHub 集成
+- 使用 **gh-sub-issue extension** 实现正确的父子关系
+- 如果扩展未安装则回退到任务列表
+- Epic issues 自动跟踪子任务完成情况
+- Labels 提供额外的组织结构（`epic:feature`，`task:feature`）
 
-### File Naming Convention
-- Tasks start as `001.md`, `002.md` during decomposition
-- After GitHub sync, renamed to `{issue-id}.md` (e.g., `1234.md`)
-- Makes it easy to navigate: issue #1234 = file `1234.md`
+### 文件命名约定
+- 任务在分解期间从 `001.md`，`002.md` 开始
+- GitHub 同步后，重命名为 `{issue-id}.md`（例如，`1234.md`）
+- 使导航变得容易：issue #1234 = 文件 `1234.md`
 
-### Design Decisions
-- Intentionally avoids GitHub Projects API complexity
-- All commands operate on local files first for speed
-- Synchronization with GitHub is explicit and controlled
-- Worktrees provide clean git isolation for parallel work
-- GitHub Projects can be added separately for visualization
+### 设计决策
+- 有意避免 GitHub Projects API 复杂性
+- 所有命令首先在本地文件上操作以提高速度
+- 与 GitHub 的同步是明确的和受控的
+- Worktrees 为并行工作提供清洁的 git 隔离
+- GitHub Projects 可以单独添加用于可视化
 
 ---
 
-## Support This Project
+## 支持这个项目
 
-Claude Code PM was developed at [Automaze](https://automaze.io) **for developers who ship, by developers who ship**.
+Claude Code PM 在 [Automaze](https://automaze.io) 开发，**为交付的开发者，由交付的开发者打造**。
 
-If Claude Code PM helps your team ship better software:
+如果 Claude Code PM 帮助你的团队交付更好的软件：
 
-- ⭐ **[Star this repository](https://github.com/your-username/claude-code-pm)** to show your support
-- 🐦 **[Follow @aroussi on X](https://x.com/aroussi)** for updates and tips
+- ⭐ **[为这个仓库点星](https://github.com/your-username/claude-code-pm)** 表达你的支持
+- 🐦 **[在 X 上关注 @aroussi](https://x.com/aroussi)** 获取更新和技巧
 
 
 ---
 
 > [!TIP]
-> **Ship faster with Automaze.** We partner with founders to bring their vision to life, scale their business, and optimize for success.
-> **[Visit Automaze to book a call with me ›](https://automaze.io)**
+> **使用 Automaze 更快交付。** 我们与创始人合作，将他们的愿景变为现实，扩展他们的业务，并优化成功。
+> **[访问 Automaze 与我预约通话 ›](https://automaze.io)**

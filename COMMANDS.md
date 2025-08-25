@@ -1,157 +1,157 @@
-# Commands
+# 命令参考
 
-Complete reference of all commands available in the Claude Code PM system.
+Claude Code PM 系统中所有可用命令的完整参考。
 
-> **Note**: Project Management commands (`/pm:*`) are documented in the main [README.md](README.md#command-reference).
+> **注意**：项目管理命令（`/pm:*`）在主要的 [README.md](README.md#command-reference) 中已有文档说明。
 
-## Table of Contents
+## 目录
 
-- [Context Commands](#context-commands)
-- [Testing Commands](#testing-commands)
-- [Utility Commands](#utility-commands)
-- [Review Commands](#review-commands)
+- [上下文命令](#context-commands)
+- [测试命令](#testing-commands)  
+- [实用工具命令](#utility-commands)
+- [审查命令](#review-commands)
 
-## Context Commands
+## 上下文命令
 
-Commands for managing project context in `.claude/context/`.
+用于管理 `.claude/context/` 中项目上下文的命令。
 
 ### `/context:create`
-- **Purpose**: Create initial project context documentation
-- **Usage**: `/context:create`
-- **Description**: Analyzes the project structure and creates comprehensive baseline documentation in `.claude/context/`. Includes project overview, architecture, dependencies, and patterns.
-- **When to use**: At project start or when context needs full rebuild
-- **Output**: Multiple context files covering different aspects of the project
+- **目的**：创建初始项目上下文文档
+- **用法**：`/context:create`
+- **描述**：分析项目结构并在 `.claude/context/` 中创建全面的基准文档。包括项目概述、架构、依赖关系和模式。
+- **使用时机**：在项目开始时或需要完全重建上下文时
+- **输出**：涵盖项目不同方面的多个上下文文件
 
 ### `/context:update`
-- **Purpose**: Update existing context with recent changes
-- **Usage**: `/context:update`
-- **Description**: Refreshes context documentation based on recent code changes, new features, or architectural updates. Preserves existing context while adding new information.
-- **When to use**: After significant changes or before major work sessions
-- **Output**: Updated context files with change tracking
+- **目的**：使用最新更改更新现有上下文
+- **用法**：`/context:update`
+- **描述**：基于最近的代码更改、新功能或架构更新来刷新上下文文档。保留现有上下文并添加新信息。
+- **使用时机**：在重大更改后或重要工作会话前
+- **输出**：带有更改跟踪的更新上下文文件
 
 ### `/context:prime`
-- **Purpose**: Load context into current conversation
-- **Usage**: `/context:prime`
-- **Description**: Reads all context files and loads them into the current conversation's memory. Essential for maintaining project awareness.
-- **When to use**: At the start of any work session
-- **Output**: Confirmation of loaded context
+- **目的**：将上下文加载到当前对话中
+- **用法**：`/context:prime`
+- **描述**：读取所有上下文文件并将它们加载到当前对话的内存中。对于维持项目意识至关重要。
+- **使用时机**：在任何工作会话开始时
+- **输出**：已加载上下文的确认信息
 
-## Testing Commands
+## 测试命令
 
-Commands for test configuration and execution.
+用于测试配置和执行的命令。
 
 ### `/testing:prime`
-- **Purpose**: Configure testing setup
-- **Usage**: `/testing:prime`
-- **Description**: Detects and configures the project's testing framework, creates testing configuration, and prepares the test-runner agent.
-- **When to use**: Initial project setup or when testing framework changes
--  **Output**: `.claude/testing-config.md` with test commands and patterns
+- **目的**：配置测试设置
+- **用法**：`/testing:prime`
+- **描述**：检测并配置项目的测试框架，创建测试配置，并准备测试运行代理。
+- **使用时机**：初始项目设置或测试框架更改时
+- **输出**：包含测试命令和模式的 `.claude/testing-config.md`
 
 ### `/testing:run`
-- **Purpose**: Execute tests with intelligent analysis
-- **Usage**: `/testing:run [test_target]`
-- **Description**: Runs tests using the test-runner agent which captures output to logs and returns only essential results to preserve context.
-- **Options**:
-   - No arguments: Run all tests
-   - File path: Run specific test file
-   - Pattern: Run tests matching pattern
-- **Output**: Test summary with failures analyzed, no verbose output in main thread
+- **目的**：使用智能分析执行测试
+- **用法**：`/testing:run [test_target]`
+- **描述**：使用测试运行代理运行测试，该代理将输出捕获到日志中，并仅返回基本结果以保持上下文。
+- **选项**：
+  - 无参数：运行所有测试
+  - 文件路径：运行特定测试文件
+  - 模式：运行匹配模式的测试
+- **输出**：测试摘要，包含分析的失败信息，主线程中无详细输出
 
-## Utility Commands
+## 实用工具命令
 
-General utility and maintenance commands.
+通用实用工具和维护命令。
 
 ### `/prompt`
-- **Purpose**: Handle complex prompts with multiple references
-- **Usage**: Write your prompt in the file, then type `/prompt`
-- **Description**: Ephemeral command for when complex prompts with numerous @ references fail in direct input. The prompt is written to the command file first, then executed.
-- **When to use**: When Claude's UI rejects complex prompts
-- **Output**: Executes the written prompt
+- **目的**：处理带有多个引用的复杂提示
+- **用法**：将提示写入文件，然后输入 `/prompt`
+- **描述**：当带有众多 @ 引用的复杂提示在直接输入中失败时的临时命令。提示首先写入命令文件，然后执行。
+- **使用时机**：当 Claude 的 UI 拒绝复杂提示时
+- **输出**：执行写入的提示
 
 ### `/re-init`
-- **Purpose**: Update or create CLAUDE.md with PM rules
-- **Usage**: `/re-init`
-- **Description**: Updates the project's CLAUDE.md file with rules from `.claude/CLAUDE.md`, ensuring Claude instances have proper instructions.
-- **When to use**: After cloning PM system or updating rules
-- **Output**: Updated CLAUDE.md in project root
+- **目的**：使用 PM 规则更新或创建 CLAUDE.md
+- **用法**：`/re-init`
+- **描述**：使用 `.claude/CLAUDE.md` 中的规则更新项目的 CLAUDE.md 文件，确保 Claude 实例具有正确的指令。
+- **使用时机**：克隆 PM 系统后或更新规则后
+- **输出**：项目根目录中的更新后 CLAUDE.md
 
-## Review Commands
+## 审查命令
 
-Commands for handling external code review tools.
+用于处理外部代码审查工具的命令。
 
 ### `/code-rabbit`
-- **Purpose**: Process CodeRabbit review comments intelligently
-- **Usage**: `/code-rabbit` then paste comments
-- **Description**: Evaluates CodeRabbit suggestions with context awareness, accepting valid improvements while ignoring context-unaware suggestions. Spawns parallel agents for multi-file reviews.
-- **Features**:
-   - Understands CodeRabbit lacks full context
-   - Accepts: Real bugs, security issues, resource leaks
-   - Ignores: Style preferences, irrelevant patterns
-   - Parallel processing for multiple files
-- **Output**: Summary of accepted/ignored suggestions with reasoning
+- **目的**：智能处理 CodeRabbit 审查评论
+- **用法**：`/code-rabbit` 然后粘贴评论
+- **描述**：以上下文感知方式评估 CodeRabbit 建议，接受有效的改进建议，同时忽略缺乏上下文的建议。为多文件审查生成并行代理。
+- **功能**：
+  - 理解 CodeRabbit 缺乏完整上下文
+  - 接受：真实错误、安全问题、资源泄漏
+  - 忽略：样式偏好、无关模式
+  - 多文件并行处理
+- **输出**：已接受/忽略建议的摘要，包含推理过程
 
-## Command Patterns
+## 命令模式
 
-All commands follow consistent patterns:
+所有命令都遵循一致的模式：
 
-### Allowed Tools
-Each command specifies its required tools in frontmatter:
-- `Read, Write, LS` - File operations
-- `Bash` - System commands
-- `Task` - Sub-agent spawning
-- `Grep` - Code searching
+### 允许的工具
+每个命令在前言中指定所需的工具：
+- `Read, Write, LS` - 文件操作
+- `Bash` - 系统命令
+- `Task` - 子代理生成
+- `Grep` - 代码搜索
 
-### Error Handling
-Commands follow fail-fast principles:
-- Check prerequisites first
-- Clear error messages with solutions
-- Never leave partial state
+### 错误处理
+命令遵循快速失败原则：
+- 首先检查先决条件
+- 提供解决方案的清晰错误消息
+- 永不留下部分状态
 
-### Context Preservation
-Commands that process lots of information:
-- Use agents to shield main thread from verbose output
-- Return summaries, not raw data
-- Preserve only essential information
+### 上下文保护
+处理大量信息的命令：
+- 使用代理来保护主线程免受详细输出影响
+- 返回摘要，而不是原始数据
+- 仅保留必要信息
 
-## Creating Custom Commands
+## 创建自定义命令
 
-To add new commands:
+添加新命令的步骤：
 
-1. **Create file**: `commands/category/command-name.md`
-2. **Add frontmatter**:
+1. **创建文件**：`commands/category/command-name.md`
+2. **添加前言**：
    ```yaml
    ---
    allowed-tools: Read, Write, LS
    ---
    ```
-3. **Structure content**:
-   - Purpose and usage
-   - Preflight checks
-   - Step-by-step instructions
-   - Error handling
-   - Output format
+3. **结构化内容**：
+   - 目的和用法
+   - 预检检查
+   - 分步说明
+   - 错误处理
+   - 输出格式
 
-4. **Follow patterns**:
-   - Keep it simple (no over-validation)
-   - Fail fast with clear messages
-   - Use agents for heavy processing
-   - Return concise output
+4. **遵循模式**：
+   - 保持简单（无过度验证）
+   - 使用清晰消息快速失败
+   - 使用代理进行重型处理
+   - 返回简洁输出
 
-## Integration with Agents
+## 与代理集成
 
-Commands often use agents for heavy lifting:
+命令通常使用代理进行繁重工作：
 
-- **test-runner**: Executes tests, analyzes results
-- **file-analyzer**: Summarizes verbose files
-- **code-analyzer**: Hunts bugs across codebase
-- **parallel-worker**: Coordinates parallel execution
+- **test-runner**：执行测试，分析结果
+- **file-analyzer**：总结详细文件
+- **code-analyzer**：在代码库中搜寻错误
+- **parallel-worker**：协调并行执行
 
-This keeps the main conversation context clean while doing complex work.
+这样在执行复杂工作的同时保持主对话上下文的清洁。
 
-## Notes
+## 注意事项
 
-- Commands are markdown files interpreted as instructions
-- The `/` prefix triggers command execution
-- Commands can spawn agents for context preservation
-- All PM commands (`/pm:*`) are documented in the main README
-- Commands follow rules defined in `/rules/`
+- 命令是作为指令解释的 markdown 文件
+- `/` 前缀触发命令执行
+- 命令可以生成代理用于上下文保护
+- 所有 PM 命令（`/pm:*`）都在主 README 中有文档
+- 命令遵循 `/rules/` 中定义的规则
